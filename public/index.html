@@ -21,24 +21,10 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Usuario</a>
+                <a class="nav-link active" href="#">Usuario</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/producto.html">Producto</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
               </li>
             </ul>
             <form class="d-flex" role="search">
@@ -56,15 +42,16 @@
                 <form action="" id="enviarDatos">
                     <div class="card">
                         <div class="card-header">
-                            <h1>Nuevo Usuario</h1>
+                            <h1 id="txtNuevoUsuario">Nuevo Usuario</h1>
                         </div>
                         <div class="card-body">
+                            <input class="form-control mb-3" type="text" id="id" placeholder="id" readonly disabled>
                             <input class="form-control mb-3" type="text" id="nombre" placeholder="Nombre" autofocus>
                             <input class="form-control mb-3" type="text" id="usuario" placeholder="Usuario">
                             <input class="form-control mb-3" type="password" id="password" placeholder="Contraseña">
                         </div>
                         <div class="card-footer">
-                            <button class="form-control btn btn-primary mb-3" type="submit">Guardar Usuario</button>
+                            <button id="txtGuardarUsuario" class="form-control btn btn-primary mb-3" type="submit">Guardar Usuario</button>
                             <button class="form-control btn btn-secondary" type="reset">Borrar Datos</button>
                         </div>
                     </div>

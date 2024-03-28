@@ -29,7 +29,9 @@ var enviarDatos = document.getElementById("enviarDatos");
 
 enviarDatos.addEventListener("submit",(e) => {
     e.preventDefault();
+    //RECIBIR LOS DATOS DEL FORMULARIO
     var usuario ={
+        id:document.getElementById("id").value,
         nombre:document.getElementById("nombre").value,
         usuario:document.getElementById("usuario").value,
         password:document.getElementById("password").value,
@@ -54,9 +56,19 @@ enviarDatos.addEventListener("submit",(e) => {
 //MODIFICAR UN REGISTRO DE MONGODB
 function editarUsuario(id){
     console.log(id);
+    socket.emit("clienteObtenerUsuarioPorID",id);
 }
-
+socket.on("servidorObtenerUsuarioPorID",(usuario)=>{
+    console.log(usuario);
+    document.getElementById("id").value = usuario._id;
+    document.getElementById("nombre").value = usuario.nombre;
+    document.getElementById("usuario").value = usuario.usuario;
+    document.getElementById("password").value = usuario.password;
+    document.getElementById("txtNuevoUsuario").innerHTML = "Editar Usuario";
+    document.getElementById("txtGuardarUsuario").innerHTML = "Guardar cambios";
+})
 //ELIMINAR UN REGISTRO DE MONGODB
 function borrarUsuario(id){
     console.log(id);
+    socket.emit("clienteBorrarUsuario", id);
 }

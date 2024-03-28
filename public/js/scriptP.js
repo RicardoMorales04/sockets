@@ -2,8 +2,6 @@ const socket = io();
 var mensajeDivP = document.getElementById("mensajeP");
 var datosP = document.getElementById("datosP");
 
-////////////////////////////  PRODUCTO          //////////////////////////////////////////////////////////
-
 //MOSTRAR PRODUCTOS DE MONGODB
 socket.on("servidorEnviarProductos",(productos)=>{
     var tr = "";
@@ -32,6 +30,7 @@ var enviarDatosP = document.getElementById("enviarDatosP");
 enviarDatosP.addEventListener("submit",(e) => {
     e.preventDefault();
     var producto ={
+        id:document.getElementById("id").value,
         nombreP:document.getElementById("nombreP").value,
         cantidad:document.getElementById("cantidad").value,
         precio:document.getElementById("precio").value,
@@ -56,9 +55,19 @@ enviarDatosP.addEventListener("submit",(e) => {
 //MODIFICAR UN REGISTRO DE MONGODB
 function editarProducto(id){
     console.log(id);
+    socket.emit("clienteObtenerProductoPorID",id);
 }
-
+socket.on("servidorObtenerProductoPorID",(producto)=>{
+    console.log(producto);
+    document.getElementById("id").value = producto._id;
+    document.getElementById("nombreP").value = producto.nombreP;
+    document.getElementById("cantidad").value = producto.cantidad;
+    document.getElementById("precio").value = producto.precio;
+    document.getElementById("txtNuevoProducto").innerHTML = "Editar Producto";
+    document.getElementById("txtGuardarProducto").innerHTML = "Guardar cambios";
+})
 //ELIMINAR UN REGISTRO DE MONGODB
 function borrarProducto(id){
     console.log(id);
+    socket.emit("clienteBorrarProducto", id);
 }
